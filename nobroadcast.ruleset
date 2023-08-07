@@ -1,0 +1,15 @@
+flush table ip ax25;
+table ip ax25 {
+	chain no_broadcast_for_ax25 {
+		meta pkttype multicast counter drop;
+		meta pkttype broadcast counter drop;
+		ip daddr 224.0.0.0/4 counter drop;
+		log prefix "AX25 ";
+	}
+
+	chain match_ax25_interfaces {
+		type filter hook output priority filter; policy accept;
+		oifname "tnc*" counter jump no_broadcast_for_ax25
+		oifname "ax*" counter jump no_broadcast_for_ax25
+	}
+}

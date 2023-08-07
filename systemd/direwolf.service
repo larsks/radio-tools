@@ -1,0 +1,10 @@
+[Unit]
+ConditionPathExists=%E/direwolf/direwolf.conf
+
+[Service]
+Type=exec
+ExecStart=/usr/bin/direwolf -t 0 -p -c %E/direwolf/direwolf.conf
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
