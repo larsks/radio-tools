@@ -1,10 +1,10 @@
 AX25_DIR = /etc/ax25
 DIREWOLF_CONFIG_DIR = $(HOME)/.config/direwolf
 SYSTEMD_UNIT_DIR = $(HOME)/.config/systemd/user
+UDEV_RULES = $(wildcard udev/*.rules)
+UDEV_RULES_DIR = /etc/udev/rules.d
 
 all:
-
-install: install-system install-user
 
 install-user:
 	install -d -m 755 $(DIREWOLF_CONFIG_DIR)
@@ -16,4 +16,6 @@ install-user:
 	systemctl --user daemon-reload
 
 install-system:
-	sudo install axports $(AX25_DIR)/axports
+	install axports $(AX25_DIR)/axports
+	install $(UDEV_RULES) $(UDEV_RULES_DIR)/
+	udevadm control --reload-rules && udevadm trigger
