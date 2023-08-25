@@ -16,6 +16,7 @@ install-user:
 	systemctl --user daemon-reload
 
 install-system:
-	install axports $(AX25_DIR)/axports
+	install -m 644 axports $(AX25_DIR)/axports
 	install $(UDEV_RULES) $(UDEV_RULES_DIR)/
+	install -m 644 ax25.nft /etc/nftables/
 	udevadm control --reload-rules && udevadm trigger
