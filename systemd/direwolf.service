@@ -6,7 +6,7 @@ Type=exec
 Environment=DIREWOLF_CONFIG=%E/direwolf/direwolf.conf
 EnvironmentFile=-%E/direwolf/direwolf.env
 ExecStartPre=/bin/sh %E/direwolf/direwolf-amixer.sh
-ExecStart=/usr/bin/direwolf -t 0 -p -c ${DIREWOLF_CONFIG}
+ExecStart=/usr/bin/direwolf -t 0 -c ${DIREWOLF_CONFIG}
 Restart=on-failure
 
 [Install]
