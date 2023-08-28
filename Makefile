@@ -13,6 +13,7 @@ install-user:
 	install -m 644 direwolf.env $(DIREWOLF_CONFIG_DIR)/
 	install -m 644 direwolf-amixer.sh $(DIREWOLF_CONFIG_DIR)/
 	install -m 644 systemd/direwolf.service $(SYSTEMD_UNIT_DIR)/
+	install -m 644 systemd/direwolf-kisstnc.service $(SYSTEMD_UNIT_DIR)/
 	systemctl --user daemon-reload
 
 install-system:
