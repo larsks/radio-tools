@@ -11,9 +11,12 @@ install-user:
 	install -d -m 755 $(SYSTEMD_UNIT_DIR)
 	install -m 644 direwolf.conf $(DIREWOLF_CONFIG_DIR)/
 	install -m 644 direwolf.env $(DIREWOLF_CONFIG_DIR)/
+	install -m 644 direwolf-tnc.env $(DIREWOLF_CONFIG_DIR)/
 	install -m 644 direwolf-amixer.sh $(DIREWOLF_CONFIG_DIR)/
-	install -m 644 systemd/direwolf.service $(SYSTEMD_UNIT_DIR)/
-	install -m 644 systemd/direwolf-kisstnc.service $(SYSTEMD_UNIT_DIR)/
+	install -m 644 direwolf-service-helper.sh $(DIREWOLF_CONFIG_DIR)/
+	install -m 644 systemd/direwolf@.service $(SYSTEMD_UNIT_DIR)/
+	ln -sf direwolf.conf $(DIREWOLF_CONFIG_DIR)/direwolf-tnc.conf
+	ln -sf direwolf.conf $(DIREWOLF_CONFIG_DIR)/direwolf-notnc.conf
 	systemctl --user daemon-reload
 
 install-system:
