@@ -1,0 +1,5 @@
+[Service]
+ExecStart=/usr/bin/kissutil -o $HOME/lib/radio/pkt.in -f $HOME/lib/radio/pkt.out
+
+[Install]
+WantedBy=default.target
