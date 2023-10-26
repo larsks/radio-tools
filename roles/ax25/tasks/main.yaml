@@ -1,0 +1,29 @@
+- name: Install ax25 support
+  tags: [ax25]
+  package:
+    name: "{{ ax25_packages }}"
+    state: present
+
+- name: Install axports configuration
+  tags: [ax25]
+  template:
+    src: axports.j2
+    dest: /etc/ax25/axports
+
+- name: Install post-up script
+  tags: [ax25]
+  copy:
+    src: post-up.sh
+    dest: /etc/ax25/post-up.sh
+    mode: "0755"
+
+- name: Install systemd units
+  tags: [ax25]
+  notify: reload-systemd
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item|basename }}"
+    owner: root
+    mode: "0644"
+  loop: "{{ query('fileglob', 'systemd/*') }}"
+

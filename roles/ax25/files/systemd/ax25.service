@@ -1,0 +1,11 @@
+[Service]
+Type=forking
+Environment=AX25_PORT=radio
+EnvironmentFile=/etc/ax25/ax25.env
+ExecStart=/bin/sh -c '/usr/sbin/kissattach $(readlink -f "${AX25_TTY}") "${AX25_PORT}" ${AX25_ADDRESS}'
+ExecStartPost=/etc/ax25/post-up.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

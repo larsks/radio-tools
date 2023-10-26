@@ -1,0 +1,5 @@
+direwolf_agwport: 8000
+direwolf_kissport: 8001
+direwolf_kisspty: 0
+alsa_speaker_level: "50%"
+alsa_capture_level: "50%"

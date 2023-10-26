@@ -1,0 +1,12 @@
+[Unit]
+Requires=direwolf.service
+After=direwolf.service
+
+[Service]
+Type=exec
+User=radio
+ExecStartPre=/bin/sh -c "mkdir -p ${HOME}/pkt.in ${HOME}/pkt.out"
+ExecStart=/usr/bin/kissutil -o ${HOME}/pkt.in -f ${HOME}/pkt.out
+
+[Install]
+WantedBy=default.target

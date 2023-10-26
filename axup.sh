@@ -1,8 +1,6 @@
 #!/bin/bash
 
-TXDELAY=100
-TXTAIL=100
-FULLDUPLEX=n
+FULLDUPLEX=y
 
 if [[ -z $1 ]]; then
 	echo "ERROR: missing port" >&2

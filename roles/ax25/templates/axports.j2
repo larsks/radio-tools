@@ -1,0 +1,4 @@
+#portname	callsign	speed	paclen	window	description
+{% for port in ax25_ports %}
+{{ port.name }}	{{ port.ssid }}	{{ port.speed|default('9600') }}	{{ port.paclen|default('128') }}	{{ port.window|default('4') }}	{{ port.description }}
+{% endfor %}

@@ -1,0 +1,5 @@
+- name: Install udev rules
+  copy:
+    src: 95-radio.rules
+    dest: /etc/udev/rules.d/95-radio.rules
+  notify: reload-udev

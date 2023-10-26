@@ -1,0 +1,4 @@
+ax25_packages:
+  - ax25-tools
+  - ax25-apps
+  - talkd

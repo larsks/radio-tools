@@ -1,0 +1,5 @@
+- name: Remove valid user banner
+  file:
+    path: /etc/ssh/sshd_config.d/rename_user.conf
+    state: absent
+  notify: restart-sshd

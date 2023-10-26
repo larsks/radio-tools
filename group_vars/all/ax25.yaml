@@ -1,0 +1,5 @@
+ax25_ports:
+  - name: radio
+    ssid: N1LKS
+    description: Primary RF link
+    paclen: 200
