@@ -2,6 +2,7 @@
   become: true
   gather_facts: false
   roles:
+    - motd
     - sshd
     - ax25
     - digirig

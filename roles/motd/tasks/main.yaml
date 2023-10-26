@@ -1,0 +1,5 @@
+- name: Install motd
+  tags: [motd]
+  copy:
+    src: motd
+    dest: /etc/motd
