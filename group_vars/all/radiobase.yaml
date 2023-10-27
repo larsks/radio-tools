@@ -1,0 +1,3 @@
+radio_common_env:
+  LD_PRELOAD: /home/radio/force_rts/force_rts.so
+  FORCE_RTS_DEVICES: /dev/radio:/dev/ttyUSB*

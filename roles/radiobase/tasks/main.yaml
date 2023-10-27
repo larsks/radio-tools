@@ -1,0 +1,40 @@
+- name: Create radio user
+  tags: [radiobase]
+  user:
+    name: radio
+    groups: "{{ radio_groups }}"
+    create_home: true
+
+- name: Grant sudo privileges to radio user
+  tags: [radiobase]
+  copy:
+    dest: /etc/sudoers.d/radio
+    content: |
+      radio ALL=(ALL:ALL) NOPASSWD:ALL
+    owner: root
+    group: root
+    mode: "0440"
+
+- name: Create radio configuration directory
+  tags: [radiobase]
+  file:
+    path: /etc/radio
+    state: directory
+    owner: root
+    group: radio
+    mode: "0775"
+
+- name: Set up common environment variables
+  tags: [radiobase]
+  copy:
+    dest: /etc/radio/radio.env
+    content: |
+      {% for k, v in radio_common_env.items() %}
+      {{k}}="{{v}}"
+      {% endfor %}
+
+- name: Create service helper directory
+  tags: [radiobase]
+  file:
+    path: /usr/libexec/radio
+    state: directory

@@ -1,7 +1,8 @@
 [Service]
-Type=Exec
+Type=exec
 User=radio
 Environment=RADIO_PKT_MAX_AGE=1
-EnvironmentFile=/etc/direwolf/direwolf.env
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=/etc/radio/direwolf.env
 Type=oneshot
 ExecStart=sh -c 'find ${HOME}/pkt.in ${HOME}/pkt.out -type f -mtime +${RADIO_PKT_MAX_AGE} -exec rm {} +'

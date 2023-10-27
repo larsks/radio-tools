@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEFAULT_DIREWOLF_CONFIG="/etc/direwolf/direwolf.conf"
+DEFAULT_DIREWOLF_CONFIG="/etc/radio/direwolf.conf"
 
 : "${DIREWOLF:=direwolf}"
 : "${DIREWOLF_FX25:=1}"

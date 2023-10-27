@@ -1,13 +1,15 @@
 [Unit]
-ConditionPathExists=/etc/direwolf/direwolf.conf
+ConditionPathExists=/etc/radio/direwolf.conf
 
 [Service]
 Type=exec
 User=radio
-EnvironmentFile=-/etc/direwolf/direwolf.env
-ExecStart=/bin/bash /usr/libexec/direwolf/direwolf-service-helper.sh
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=/etc/radio/direwolf.env
+ExecStart=/usr/libexec/radio/direwolf-service-helper.sh
 ExecStopPost=/bin/rm -f /tmp/kisstnc
 Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=default.target

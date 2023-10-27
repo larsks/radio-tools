@@ -6,20 +6,31 @@
 
 - name: Install axports configuration
   tags: [ax25]
+  notify: restart-ax25
   template:
     src: axports.j2
     dest: /etc/ax25/axports
 
-- name: Install post-up script
+- name: Install ax25 service configuration
   tags: [ax25]
+  notify: restart-ax25
+  template:
+    src: ax25.j2.env
+    dest: /etc/radio/ax25.env
+
+- name: Install service helper
+  tags: [ax25]
+  notify: restart-ax25
   copy:
-    src: post-up.sh
-    dest: /etc/ax25/post-up.sh
+    src: ax25-service-helper.sh
+    dest: /usr/libexec/radio/ax25-service-helper.sh
     mode: "0755"
 
 - name: Install systemd units
   tags: [ax25]
-  notify: reload-systemd
+  notify:
+    - reload-systemd
+    - restart-ax25
   copy:
     src: "{{ item }}"
     dest: "/etc/systemd/system/{{ item|basename }}"
@@ -27,3 +38,9 @@
     mode: "0644"
   loop: "{{ query('fileglob', 'systemd/*') }}"
 
+- name: Activate ax25 service
+  tags: [ax25]
+  service:
+    name: ax25
+    enabled: true
+    state: started

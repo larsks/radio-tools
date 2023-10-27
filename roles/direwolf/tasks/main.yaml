@@ -1,26 +1,13 @@
 - name: Install Direwolf
   package:
-    name: direwolf
+    name: "{{ direwolf_packages }}"
     state: present
 
-- name: Create direwolf directories
-  file:
-    path: "{{ item.path }}"
-    state: directory
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
-  loop:
-    - path: /etc/direwolf
-      group: radio
-      mode: "0755"
-    - path: /usr/libexec/direwolf
-      group: root
-      mode: "0755"
-
 - name: Install direwolf configuration
+  notify: restart-direwolf
   template:
     src: direwolf.j2.conf
-    dest: /etc/direwolf/direwolf.conf
+    dest: /etc/radio/direwolf.conf
 
 - name: Install systemd units
   notify: reload-systemd
@@ -32,15 +19,17 @@
   loop: "{{ query('fileglob', 'systemd/*') }}"
 
 - name: Install service helper
+  notify: restart-direwolf
   copy:
     src: direwolf-service-helper.sh
-    dest: "/usr/libexec/direwolf/direwolf-service-helper.sh"
+    dest: "/usr/libexec/radio/direwolf-service-helper.sh"
     mode: "0755"
 
 - name: Install environment settings
+  notify: restart-direwolf
   template:
-    src: direwolf.env
-    dest: /etc/direwolf/direwolf.env
+    src: direwolf.j2.env
+    dest: /etc/radio/direwolf.env
     group: radio
-    mode: "0755"
+    mode: "0775"
     force: false

@@ -1,9 +1,16 @@
+[Unit]
+Description=AX.25 service
+Requires=direwolf.service
+After=direwolf.service
+
 [Service]
 Type=forking
-Environment=AX25_PORT=radio
-EnvironmentFile=/etc/ax25/ax25.env
-ExecStart=/bin/sh -c '/usr/sbin/kissattach $(readlink -f "${AX25_TTY}") "${AX25_PORT}" ${AX25_ADDRESS}'
-ExecStartPost=/etc/ax25/post-up.sh
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=/etc/radio/ax25.env
+ExecStart=/usr/libexec/radio/ax25-service-helper.sh ${AX25_TTY} ${AX25_PORT} ${AX25_SPEED}
+
+# There is a race condition when starting up direwolf and ax25 in parallel;
+# the /tmp/kisstnc symlink may not be available immediately.
 Restart=on-failure
 RestartSec=5
 

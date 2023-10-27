@@ -1,0 +1,5 @@
+- name: Restart AX.25 service
+  listen: restart-ax25
+  service:
+    name: ax25
+    state: restarted

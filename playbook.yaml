@@ -2,6 +2,7 @@
   become: true
   gather_facts: false
   roles:
+    - radiobase
     - motd
     - sshd
     - ax25

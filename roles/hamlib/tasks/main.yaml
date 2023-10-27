@@ -1,28 +1,23 @@
 - name: Install hamlib
+  tags: [hamlib]
   package:
-    name: libhamlib-utils
+    name: "{{ hamlib_packages }}"
     state: present
 
-- name: Create hamlib directories
-  file:
-    path: "{{ item.path }}"
-    state: directory
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
-  loop:
-    - path: /etc/hamlib
-      group: radio
-      mode: "0755"
-
 - name: Install hamlib configuration
+  tags: [hamlib]
+  notify: restart-rigctld
   template:
     src: hamlib.j2.env
-    dest: /etc/hamlib/hamlib.env
+    dest: /etc/radio/hamlib.env
     group: radio
     mode: "0755"
 
 - name: Install systemd units
-  notify: reload-systemd
+  tags: [hamlib]
+  notify:
+    - reload-systemd
+    - restart-rigctld
   copy:
     src: "{{ item }}"
     dest: "/etc/systemd/system/{{ item|basename }}"
@@ -31,6 +26,7 @@
   loop: "{{ query('fileglob', 'systemd/*') }}"
 
 - name: Enable rigctld
+  tags: [hamlib]
   service:
     name: rigctld
     enabled: true
