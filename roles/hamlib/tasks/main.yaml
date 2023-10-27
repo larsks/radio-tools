@@ -12,6 +12,7 @@
     dest: /etc/radio/hamlib.env
     group: radio
     mode: "0755"
+    force: "{{ force_replace }}"
 
 - name: Install systemd units
   tags: [hamlib]

@@ -32,4 +32,4 @@
     dest: /etc/radio/direwolf.env
     group: radio
     mode: "0775"
-    force: false
+    force: "{{ force_replace }}"

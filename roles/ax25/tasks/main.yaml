@@ -17,6 +17,7 @@
   template:
     src: ax25.j2.env
     dest: /etc/radio/ax25.env
+    force: "{{ force_replace }}"
 
 - name: Install service helper
   tags: [ax25]
