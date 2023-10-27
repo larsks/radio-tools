@@ -1,0 +1,16 @@
+- name: Enable hardware watchdog
+  tags: [watchdog]
+  lineinfile:
+    path: /boot/config.txt
+    insertafter: '^\[all]'
+    line: dtparam=watchdog=on
+
+- name: Enable watchdog support in systemd
+  tags: [watchdog]
+  lineinfile:
+    path: /etc/systemd/system.conf
+    line: "{{ item }}"
+    regexp: "^{{ item.split('=')|first }}"
+  loop:
+    - "RuntimeWatchdogSec={{ watchdog_runtime_seconds }}"
+    - "RebootWatchdogSec={{ watchdog_reboot_seconds }}"

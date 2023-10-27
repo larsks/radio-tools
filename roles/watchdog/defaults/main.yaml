@@ -1,0 +1,2 @@
+watchdog_runtime_seconds: 5
+watchdog_reboot_seconds: 30
