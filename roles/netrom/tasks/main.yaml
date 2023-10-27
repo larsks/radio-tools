@@ -1,0 +1,41 @@
+- name: Enable netrom kernel module
+  tags: [netrom]
+  notify: load-netrom-module
+  copy:
+    dest: /etc/modules-load.d/netrom.conf
+    content: |
+      netrom
+
+- name: Create netrom ports configuration
+  tags: [netrom]
+  template:
+    src: nrports.j2
+    dest: /etc/ax25/nrports
+
+- name: Install systemd units
+  tags: [netrom]
+  notify:
+    - reload-systemd
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item|basename }}"
+    owner: root
+    mode: "0644"
+  loop: "{{ query('fileglob', 'systemd/*') }}"
+
+- name: Enable netrom ports
+  tags: [netrom]
+  service:
+    name: "nrattach@{{ item.name }}"
+    enabled: true
+    state: started
+  loop: "{{ netrom_ports }}"
+
+- name: Enable netrom services
+  tags: [netrom]
+  service:
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  loop:
+    - netromd

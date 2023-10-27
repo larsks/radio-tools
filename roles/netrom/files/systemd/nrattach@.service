@@ -1,0 +1,12 @@
+[Unit]
+Requires=ax25.service netrom.target
+After=ax25.service
+Before=netrom.target
+
+[Service]
+Type=oneshot
+ExecStart=nrattach %i
+RemainAfterExit=true
+
+[Install]
+WantedBy=default.service

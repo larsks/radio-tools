@@ -1,0 +1,3 @@
+- name: Load netrom kernel module
+  listen: load-netrom-module
+  command: modprobe netrom

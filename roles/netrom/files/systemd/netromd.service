@@ -1,0 +1,10 @@
+[Unit]
+Requires=ax25.service netrom.target
+After=ax25.service netrom.target
+
+[Service]
+Type=simple
+ExecStart=/usr/sbin/netromd
+
+[Install]
+WantedBy=default.service
