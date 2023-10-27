@@ -1,0 +1,14 @@
+[Unit]
+Description=Collection AX.25 activity
+
+[Service]
+# Using Type=exec with mheardd seems to cause problems. You'd think
+# Type=forking would be the correct choice, but that doesn't work
+# either.
+Type=simple
+ExecStart=/usr/sbin/mheardd
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

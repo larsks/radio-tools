@@ -39,9 +39,13 @@
     mode: "0644"
   loop: "{{ query('fileglob', 'systemd/*') }}"
 
-- name: Activate ax25 service
+- name: Activate ax25 services
   tags: [ax25]
   service:
-    name: ax25
+    name: "{{ item }}"
     enabled: true
     state: started
+  loop:
+    - ax25
+    - ax25d
+    - mheardd
