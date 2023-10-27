@@ -8,6 +8,8 @@ EnvironmentFile=/etc/radio/radio.env
 EnvironmentFile=/etc/radio/direwolf.env
 ExecStart=/usr/libexec/radio/direwolf-service-helper.sh
 ExecStopPost=/bin/rm -f /tmp/kisstnc
+ExecStopPost=!/bin/sh -c '[ "$SERVICE_RESULT" = "timeout" ] && reboot'
+TimeoutStopSec=30s
 Restart=on-failure
 RestartSec=5
 
