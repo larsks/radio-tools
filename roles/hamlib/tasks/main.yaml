@@ -1,0 +1,37 @@
+- name: Install hamlib
+  package:
+    name: libhamlib-utils
+    state: present
+
+- name: Create hamlib directories
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  loop:
+    - path: /etc/hamlib
+      group: radio
+      mode: "0755"
+
+- name: Install hamlib configuration
+  template:
+    src: hamlib.j2.env
+    dest: /etc/hamlib/hamlib.env
+    group: radio
+    mode: "0755"
+
+- name: Install systemd units
+  notify: reload-systemd
+  copy:
+    src: "{{ item }}"
+    dest: "/etc/systemd/system/{{ item|basename }}"
+    owner: root
+    mode: "0644"
+  loop: "{{ query('fileglob', 'systemd/*') }}"
+
+- name: Enable rigctld
+  service:
+    name: rigctld
+    enabled: true
+    state: started

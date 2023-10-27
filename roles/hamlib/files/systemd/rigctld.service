@@ -1,0 +1,6 @@
+[Service]
+Type=exec
+User=radio
+Environment=HAMLIB_OPTIONS=
+EnvironmentFile=/etc/hamlib/hamlib.env
+ExecStart=/usr/bin/rigctld -m ${HAMLIB_MODEL} -r ${HAMLIB_DEVICE} ${HAMLIB_OPTIONS}
