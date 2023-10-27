@@ -1,0 +1,5 @@
+- name: Restart direwolf
+  listen: restart-direwolf
+  service:
+    name: direwolf
+    state: restarted

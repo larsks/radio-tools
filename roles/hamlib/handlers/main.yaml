@@ -1,0 +1,5 @@
+- name: Restart rigctld
+  listen: restart-rigctld
+  service:
+    name: rigctld
+    state: restarted
