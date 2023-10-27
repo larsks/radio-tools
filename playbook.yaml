@@ -3,10 +3,11 @@
   gather_facts: false
   roles:
     - radiobase
-    - motd
     - sshd
-    - ax25
-    - digirig
-    - direwolf
     - hamlib
     - watchdog
+    - motd
+    - digirig
+    - direwolf
+    - ax25
+    - netrom
