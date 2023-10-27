@@ -1,11 +1,10 @@
 [Unit]
 Description=AX.25 ax25d service
-Requires=ax25
-After=ax25
+Requires=ax25.service
+After=ax25.service
 
 [Service]
 Type=exec
-User=radio
 EnvironmentFile=/etc/radio/radio.env
 EnvironmentFile=/etc/radio/ax25.env
 ExecStart=/usr/sbin/ax25d -l
