@@ -1,0 +1,15 @@
+[Unit]
+Description=AX.25 ax25d service
+Requires=ax25
+After=ax25
+
+[Service]
+Type=exec
+User=radio
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=/etc/radio/ax25.env
+ExecStart=/usr/sbin/ax25d -l
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
