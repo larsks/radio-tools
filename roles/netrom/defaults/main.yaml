@@ -1,0 +1,3 @@
+netrom_pause: '5'
+netrom_quality: '255'
+netrom_interval: '60'

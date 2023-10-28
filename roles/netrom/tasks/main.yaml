@@ -12,6 +12,19 @@
     src: nrports.j2
     dest: /etc/ax25/nrports
 
+- name: Create netrom broadcast configuration
+  tags: [netrom]
+  template:
+    src: nrbroadcast.j2
+    dest: /etc/ax25/nrbroadcast
+
+- name: Create netrom service configuration
+  tags: [netrom]
+  notify: restart-netromd
+  template:
+    src: netrom.j2.env
+    dest: /etc/radio/netrom.env
+
 - name: Install systemd units
   tags: [netrom]
   notify:

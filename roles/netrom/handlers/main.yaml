@@ -1,3 +1,9 @@
 - name: Load netrom kernel module
   listen: load-netrom-module
   command: modprobe netrom
+
+- name: Restart netromd
+  listen: restart-netromd
+  service:
+    name: netromd
+    state: restarted

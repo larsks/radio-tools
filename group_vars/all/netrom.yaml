@@ -1,3 +1,5 @@
+netrom_interval: 15
+
 netrom_ports:
   - name: nrnod
     callsign: N1LKS-1
@@ -10,3 +12,8 @@ netrom_ports:
     paclen: 128
     description: Netrom bbs
 
+netrom_broadcasts:
+  - name: radio
+    min_obs: 5
+    def_qual: 192
+    worst_qual: 100
