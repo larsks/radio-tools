@@ -44,11 +44,12 @@
     state: started
   loop: "{{ netrom_ports }}"
 
-- name: Enable netrom services
+- name: Enable netrom units
   tags: [netrom]
   service:
     name: "{{ item }}"
     enabled: true
     state: started
   loop:
-    - netromd
+    - netrom.target
+    - netromd.service

@@ -9,7 +9,12 @@ if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]
   exit 1;
 fi
 
-ax25_tty=$(readlink -f "$1")
+while :; do
+	ax25_tty=$(readlink -f "$1")
+	[ -c "${ax25_tty}" ] && break
+	sleep 1
+done
+
 ax25_port=$2
 ax25_speed=$3
 

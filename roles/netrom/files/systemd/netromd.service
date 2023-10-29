@@ -6,7 +6,10 @@ After=ax25.service netrom.target
 Type=simple
 EnvironmentFile=/etc/radio/radio.env
 EnvironmentFile=/etc/radio/netrom.env
+ExecStartPre=systemctl is-active ax25.service
 ExecStart=/usr/sbin/netromd -i -l -p ${NETROM_PAUSE} -q ${NETROM_QUALITY} -t ${NETROM_INTERVAL}
+Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=default.target

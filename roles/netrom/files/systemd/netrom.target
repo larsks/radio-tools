@@ -1,2 +1,5 @@
 [Unit]
 Description=Netrom ports
+
+[Install]
+WantedBy=default.target

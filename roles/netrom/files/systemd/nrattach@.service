@@ -5,8 +5,13 @@ Before=netrom.target
 
 [Service]
 Type=oneshot
-ExecStart=nrattach %i
+EnvironmentFile=-/etc/radio/radio.env
+EnvironmentFile=-/etc/radio/netrom-%i.env
+ExecStartPre=systemctl is-active ax25.service
+ExecStart=nrattach $NRATTACH_OPTIONS %i
 RemainAfterExit=true
+Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=default.target
