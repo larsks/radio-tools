@@ -1,3 +1,4 @@
+hamlib_enable_rigctld: true
 hamlib_device: /dev/radio
 hamlib_model: 2035
 hamlib_options: --vfo

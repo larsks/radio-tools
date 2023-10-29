@@ -1,0 +1,19 @@
+netrom_interval: 15
+
+netrom_ports:
+  - name: nrnod
+    callsign: "{{ callsign }}-1"
+    alias: ODDNOD
+    paclen: 128
+    description: Netrom node port
+  - name: nrbbs
+    callsign: "{{ callsign }}-2"
+    alias: ODDBBS
+    paclen: 128
+    description: Netrom bbs
+
+netrom_broadcasts:
+  - name: radio
+    min_obs: 5
+    def_qual: 192
+    worst_qual: 100

@@ -1,5 +1,6 @@
 - name: Restart rigctld
   listen: restart-rigctld
+  when: "{{ hamlib_enable_rigctld|default(false) }}"
   service:
     name: rigctld
     state: restarted

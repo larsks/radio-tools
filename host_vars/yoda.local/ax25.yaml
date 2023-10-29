@@ -1,0 +1,4 @@
+ax25_ports:
+  - name: radio
+    ssid: "{{ callsign }}-4"
+    description: Primary RF link

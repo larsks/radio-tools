@@ -1,0 +1,6 @@
+netrom_ports:
+  - name: nrnod
+    callsign: "{{ callsign }}-4"
+    alias: ODDLAP
+    paclen: 128
+    description: Netrom node port
