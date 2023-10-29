@@ -9,6 +9,7 @@ EnvironmentFile=/etc/radio/radio.env
 EnvironmentFile=/etc/radio/ax25.env
 ExecStart=/usr/sbin/ax25d -l
 Restart=on-failure
+RestartSec=5
 
 [Install]
 WantedBy=default.target
