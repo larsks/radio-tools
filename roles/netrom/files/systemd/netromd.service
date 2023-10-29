@@ -9,4 +9,4 @@ EnvironmentFile=/etc/radio/netrom.env
 ExecStart=/usr/sbin/netromd -i -l -p ${NETROM_PAUSE} -q ${NETROM_QUALITY} -t ${NETROM_INTERVAL}
 
 [Install]
-WantedBy=default.service
+WantedBy=default.target

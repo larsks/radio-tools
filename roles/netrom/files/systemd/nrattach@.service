@@ -9,4 +9,4 @@ ExecStart=nrattach %i
 RemainAfterExit=true
 
 [Install]
-WantedBy=default.service
+WantedBy=default.target
