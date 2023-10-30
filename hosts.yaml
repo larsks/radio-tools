@@ -1,8 +1,8 @@
 all:
-  radio:
-    vars:
-        ansible_user: radio
-        ansible_become: true
-    hosts:
-      radio.local:
-      yoda.local:
+  children:
+    radio:
+      vars:
+          ansible_user: root
+      hosts:
+        radio.local:
+        yoda.local:

@@ -20,7 +20,7 @@ ax25_speed=$3
 
 if [ "${ax25_speed}" -eq "9600" ]; then
   /usr/sbin/kissattach "${ax25_tty}" "${ax25_port}" -m 256
-  /usr/sbin/kissparms -p "${ax25_port}" -t 100 -l 10 -s 12 -r 80 -f n
+  /usr/sbin/kissparms -p "${ax25_port}" -c 1 -t 100 -l 100 -s 100 -r 80 -f n
   echo 4      > /proc/sys/net/ax25/ax0/standard_window_size  # 2-7 (max frames)
   echo 256    > /proc/sys/net/ax25/ax0/maximum_packet_length # 1-512 (paclen)
   echo 3100   > /proc/sys/net/ax25/ax0/t1_timeout            # (Frack /1000 = seconds)
@@ -31,7 +31,7 @@ if [ "${ax25_speed}" -eq "9600" ]; then
   echo 2      > /proc/sys/net/ax25/ax0/connect_mode          # 0 = None, 1 = Network, 2 = All
 elif [ "${ax25_speed}" -eq "1200" ]; then
   /usr/sbin/kissattach "${ax25_tty}" "${ax25_port}" -m 128
-  /usr/sbin/kissparms -p "${ax25_port}" -t 300 -l 10 -s 12 -r 80 -f n
+  /usr/sbin/kissparms -p "${ax25_port}" -c 1 -t 300 -l 100 -s 100 -r 80 -f n
   echo 4      > /proc/sys/net/ax25/ax0/standard_window_size
   echo 128    > /proc/sys/net/ax25/ax0/maximum_packet_length
   echo 2000   > /proc/sys/net/ax25/ax0/t1_timeout

@@ -29,9 +29,11 @@
   copy:
     dest: /etc/radio/radio.env
     content: |
+      {% if radio_common_env is defined %}
       {% for k, v in radio_common_env.items() %}
       {{k}}="{{v}}"
       {% endfor %}
+      {% endif %}
 
 - name: Create service helper directory
   tags: [radiobase]

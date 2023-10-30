@@ -27,7 +27,7 @@
   loop: "{{ query('fileglob', 'systemd/*') }}"
 
 - name: Enable rigctld
-  when: "{{ hamlib_enable_rigctld|default(false) }}"
+  when: hamlib_enable_rigctld|default(false)
   tags: [hamlib]
   service:
     name: rigctld

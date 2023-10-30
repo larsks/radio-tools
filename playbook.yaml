@@ -1,13 +1,26 @@
 - hosts: all
   become: true
-  gather_facts: false
+  gather_facts: true
+  pre_tasks:
+    - include_vars:
+        file: "{{ lookup('ansible.builtin.first_found', candidates) }}"
+      vars:
+        candidates:
+          - "vars/{{ ansible_os_family|lower }}.yaml"
+          - "vars/defaults.yaml"
   roles:
+    - systemd
     - radiobase
     - sshd
     - hamlib
-    - watchdog
-    - motd
     - digirig
     - direwolf
     - ax25
     - netrom
+
+- hosts: radio.local
+  become: true
+  gather_facts: false
+  roles:
+    - watchdog
+    - motd

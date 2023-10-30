@@ -1,6 +1,6 @@
 [Unit]
 Description=AX.25 service
-Requires=direwolf.service
+BindsTo=direwolf.service
 After=direwolf.service
 
 [Service]

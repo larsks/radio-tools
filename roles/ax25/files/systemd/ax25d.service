@@ -2,6 +2,8 @@
 Description=AX.25 ax25d service
 Requires=ax25.service
 After=ax25.service
+Wants=netrom.target
+After=netrom.target
 
 [Service]
 Type=exec

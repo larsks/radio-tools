@@ -39,6 +39,21 @@
     mode: "0644"
   loop: "{{ query('fileglob', 'systemd/*') }}"
 
+- name: Create direwolf service overrides directory
+  tags: [ax25]
+  file:
+    path: /etc/systemd/system/direwolf.service.d
+    state: directory
+
+- name: Install additional systemd dependencies for direwolf
+  tags: [ax25]
+  notify:
+    - reload-systemd
+    - restart-ax25
+  copy:
+    src: ax25-direwolf-deps.conf
+    dest: /etc/systemd/system/direwolf.service.d/ax25-direwolf-deps.conf
+
 - name: Activate ax25 services
   tags: [ax25]
   service:
