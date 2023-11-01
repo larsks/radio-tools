@@ -1,15 +1,18 @@
 - name: Install Direwolf
+  tags: [direwolf]
   package:
     name: "{{ direwolf_packages }}"
     state: present
 
 - name: Install direwolf configuration
+  tags: [direwolf]
   notify: restart-direwolf
   template:
     src: direwolf.j2.conf
     dest: /etc/radio/direwolf.conf
 
 - name: Install systemd units
+  tags: [direwolf]
   notify: reload-systemd
   copy:
     src: "{{ item }}"
@@ -19,6 +22,7 @@
   loop: "{{ query('fileglob', 'systemd/*') }}"
 
 - name: Install service helper
+  tags: [direwolf]
   notify: restart-direwolf
   copy:
     src: direwolf-service-helper.sh
@@ -26,6 +30,7 @@
     mode: "0755"
 
 - name: Install environment settings
+  tags: [direwolf]
   notify: restart-direwolf
   template:
     src: direwolf.j2.env
