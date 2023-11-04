@@ -5,8 +5,9 @@ UNITS=(
 	units/tncaudio.service
 )
 
-ENVS=(
-	envs/radio.env
+CONF=(
+	conf/radio.env
+	conf/direwolf.conf
 )
 
 SCRIPTS=(
@@ -19,8 +20,8 @@ for unit in "${UNITS[@]}"; do
 	install -m 644 "$unit" /etc/systemd/system
 done
 
-for env in "${ENVS[@]}"; do
-	install -m 644 "$env" /etc/radio
+for conf in "${CONF[@]}"; do
+	install -m 644 "$conf" /etc/radio
 done
 
 for script in "${SCRIPTS[@]}"; do
