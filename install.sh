@@ -43,6 +43,8 @@ SCRIPTS=(
 
 PORTS=(
 	conf/ports/vhf0.env
+	conf/ports/udp0.env
+	conf/ports/udp1.env
 )
 
 TMPFILES=(
