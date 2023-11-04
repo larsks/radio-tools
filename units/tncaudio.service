@@ -1,6 +1,6 @@
 [Unit]
-Wants=dev-usb-001-004.device
-After=dev-usb-001-004.device
+Wants=dev-bus-usb-001-004.device
+After=dev-bus-usb-001-004.device
 ConditionPathExists=/etc/radio/direwolf.conf
 
 [Service]
