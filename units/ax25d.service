@@ -1,0 +1,13 @@
+[Unit]
+Description=AX.25 ax25d service
+Wants=ax25ports.target
+After=ax25ports.target
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=-/etc/radio/ax25.env
+ExecStart=/opt/radio/ax25d-start.sh
+
+[Install]
+WantedBy=radio.target

@@ -10,6 +10,7 @@ UNITS=(
 	units/ax25ports.target
 	units/ptyproxy@.service
 	units/ax25ipd@.service
+	units/ax25d.service
 )
 
 OVERRIDES=(
@@ -23,6 +24,7 @@ CONF=(
 	conf/direwolf.conf
 	conf/ax25ipd-udp0.conf
 	conf/ax25ipd-udp1.conf
+	conf/ax25d.conf
 )
 
 AX25CONF=(
@@ -39,6 +41,7 @@ SCRIPTS=(
 	scripts/mheardd-start.sh
 	scripts/ptyproxy-start.sh
 	scripts/ax25ipd-start.sh
+	scripts/ax25d-start.sh
 )
 
 PORTS=(
@@ -91,4 +94,5 @@ systemctl enable radio.target tncaudio.service direwolf.service rigctld.service 
 	kissattach@vhf0.service kissattach@udp0.service kissattach@udp1.service \
 	ax25ports.target mheardd.service \
 	ptyproxy@udp0.service ptyproxy@udp1.service \
-	ax25ipd@udp0.service ax25ipd@udp1.service
+	ax25ipd@udp0.service ax25ipd@udp1.service \
+	ax25d.service
