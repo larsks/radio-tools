@@ -7,7 +7,7 @@ ConditionPathExists=/etc/radio/direwolf.conf
 Type=oneshot
 EnvironmentFile=/etc/radio/radio.env
 EnvironmentFile=-/etc/radio/soundcard.env
-ExecStart=/opt/radio/tnc-audio.sh
+ExecStart=/opt/radio/tncaudio.sh
 
 [Install]
 WantedBy=radio.target
