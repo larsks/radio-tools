@@ -33,6 +33,10 @@ PORTS=(
 	conf/ports/vhf0.env
 )
 
+TMPFILES=(
+	conf/tmpfiles.d/radio.conf
+)
+
 mkdir -p /opt/radio /etc/radio /etc/radio/ports
 
 for unit in "${UNITS[@]}"; do
@@ -55,6 +59,11 @@ for port in "${PORTS[@]}"; do
 	install -m 644 "$port" /etc/radio/ports
 done
 
+for conf in "${TMPFILES[@]}"; do
+	install -m 644 "$conf" /etc/tmpfiles.d
+done
+
 systemctl daemon-reload
+systemd-tmpfiles --create
 systemctl enable radio.target tncaudio.service direwolf.service rigctld.service \
 	ax25tnc@vhf0.service ax25ports.target mheardd.service
