@@ -1,7 +1,8 @@
 [Unit]
 Description=AXUDP port %i
 Requires=ptyproxy@%i.service
-After=ptyproxy@%i.service
+Wants=network-online.target
+After=ptyproxy@%i.service network-online.target
 
 [Service]
 Type=exec
