@@ -1,0 +1,13 @@
+[Unit]
+Wants=dev-usb-001-004.device
+After=dev-usb-001-004.device
+ConditionPathExists=/etc/radio/direwolf.conf
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=-/etc/radio/soundcard.env
+ExecStart=/opt/radio/tnc-audio.sh
+
+[Install]
+WantedBy=radio.target
