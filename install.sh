@@ -13,6 +13,8 @@ CONF=(
 
 SCRIPTS=(
 	scripts/tncaudio.sh
+	scripts/direwolf-run.sh
+	scripts/direwolf-cleanup.sh
 )
 
 mkdir -p /opt/radio /etc/radio
