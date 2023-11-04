@@ -1,0 +1,5 @@
+[Unit]
+Description=All AX25 ports are up
+
+[Install]
+WantedBy=radio.target

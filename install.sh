@@ -6,6 +6,8 @@ UNITS=(
 	units/direwolf.service
 	units/rigctld.service
 	units/ax25tnc@.service
+	units/mheardd.service
+	units/ax25ports.target
 )
 
 CONF=(
@@ -24,6 +26,7 @@ SCRIPTS=(
 	scripts/ax25tnc-start.sh
 	scripts/ax25tnc-startpost.sh
 	scripts/wait-for-tty.sh
+	scripts/mheardd-start.sh
 )
 
 PORTS=(
@@ -53,4 +56,5 @@ for port in "${PORTS[@]}"; do
 done
 
 systemctl daemon-reload
-systemctl enable radio.target tncaudio.service direwolf.service rigctld.service ax25tnc@vhf0.service
+systemctl enable radio.target tncaudio.service direwolf.service rigctld.service \
+	ax25tnc@vhf0.service ax25ports.target mheardd.service

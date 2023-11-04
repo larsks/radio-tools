@@ -1,0 +1,13 @@
+[Unit]
+Description=Collect AX.25 activity
+Wants=ax25ports.target
+After=ax25ports.target
+
+[Service]
+Type=forking
+ExecStart=/opt/radio/mheardd-start.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=radio.target

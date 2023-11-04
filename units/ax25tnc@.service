@@ -1,7 +1,8 @@
 [Unit]
 Description=AX.25 service for port %i
-Wants=direwolf.service
+Wants=direwolf.service ax25ports.target
 After=direwolf.service
+Before=ax25ports.target
 ConditionPathExists=/etc/ax25/axports
 
 [Service]
