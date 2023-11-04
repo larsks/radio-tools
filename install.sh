@@ -3,6 +3,7 @@
 UNITS=(
 	units/radio.target
 	units/tncaudio.service
+	units/direwolf.service
 )
 
 CONF=(
@@ -27,3 +28,6 @@ done
 for script in "${SCRIPTS[@]}"; do
 	install -m 755 "$script" /opt/radio
 done
+
+systemctl daemon-reload
+systemctl enable radio.target tncaudio.service direwolf.service
