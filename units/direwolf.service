@@ -1,0 +1,26 @@
+[Unit]
+ConditionPathExists=/etc/radio/direwolf.conf
+Wants=dev-radio.device tncaudio.service
+After=dev-radio.device tncaudio.service
+
+[Service]
+Type=exec
+User=radio
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=-/etc/radio/direwolf.env
+ExecStart=/opt/radio/run-direwolf.sh
+
+# Ensure tnc symlink is cleaned up on exit
+ExecStopPost=/bin/rm -f /tmp/kisstnc
+
+# The ax0 interface often gets wedged during service restarts, which
+# ultimately prevents direwolf from restarting properly. This is an
+# ugly hack to reboot the Pi if direwolf fails to restart.
+ExecStopPost=!/bin/sh -c '[ "$SERVICE_RESULT" = "timeout" ] && reboot'
+TimeoutStopSec=30s
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
