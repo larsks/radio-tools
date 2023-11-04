@@ -8,7 +8,7 @@ Type=exec
 User=radio
 EnvironmentFile=/etc/radio/radio.env
 EnvironmentFile=-/etc/radio/direwolf.env
-ExecStart=/opt/radio/direwolf-run.sh
+ExecStart=/opt/radio/direwolf-start.sh
 ExecStopPost=/opt/radio/direwolf-cleanup.sh
 TimeoutStopSec=30s
 

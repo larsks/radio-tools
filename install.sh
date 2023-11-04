@@ -19,7 +19,7 @@ AX25CONF=(
 
 SCRIPTS=(
 	scripts/tncaudio.sh
-	scripts/direwolf-run.sh
+	scripts/direwolf-start.sh
 	scripts/direwolf-cleanup.sh
 	scripts/ax25tnc-start.sh
 	scripts/ax25tnc-startpost.sh
