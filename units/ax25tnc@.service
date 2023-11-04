@@ -1,0 +1,21 @@
+[Unit]
+Description=AX.25 service for port %i
+Wants=direwolf.service
+After=direwolf.service
+ConditionPathExists=/etc/ax25/axports
+
+[Service]
+Type=forking
+Environment=AX25_PORT=%i
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=-/etc/radio/ax25tnc.env
+EnvironmentFile=/etc/radio/ports/%i.env
+ExecStartPre=/opt/radio/wait-for-tty.sh ${AX25_TTY}
+ExecStart=/opt/radio/ax25tnc-start.sh
+ExecStartPost=/opt/radio/ax25tnc-startpost.sh
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=radio.target
