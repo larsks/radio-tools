@@ -1,0 +1,12 @@
+[Unit]
+Description=Rigctl daemon
+Wants=dev-radio.device
+After=dev-radio.device
+
+[Service]
+Type=exec
+User=radio
+Environment=HAMLIB_MODEL=1
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=-/etc/radio/hamlib.env
+ExecStart=/usr/bin/rigctld -m ${HAMLIB_MODEL} -r /dev/radio -p /dev/radio -P RTS "$HAMLIB_OPTIONS"

@@ -4,6 +4,7 @@ UNITS=(
 	units/radio.target
 	units/tncaudio.service
 	units/direwolf.service
+	units/rigctld.service
 )
 
 CONF=(
