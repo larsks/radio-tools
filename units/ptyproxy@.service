@@ -4,6 +4,7 @@ Description=PTY proxy for AXUDP port %i
 [Service]
 Type=exec
 ExecStart=/opt/radio/ptyproxy-start.sh %i
+TimeoutStopSec=30s
 
 [Install]
 WantedBy=radio.target
