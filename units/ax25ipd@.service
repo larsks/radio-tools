@@ -1,0 +1,15 @@
+[Unit]
+Description=AXUDP port %i
+Requires=ptyproxy@%i.service
+After=ptyproxy@%i.service
+
+[Service]
+Type=exec
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=-/etc/radio/ax25ipd.env
+EnvironmentFile=-/etc/radio/ports/%i.env
+ExecStartPre=/opt/radio/wait-for-tty.sh /run/radio/pty%i
+ExecStart=/opt/radio/ax25ipd-start.sh %i
+
+[Install]
+WantedBy=radio.target

@@ -9,11 +9,14 @@ UNITS=(
 	units/mheardd.service
 	units/ax25ports.target
 	units/ptyproxy@.service
+	units/ax25ipd@.service
 )
 
 CONF=(
 	conf/radio.env
 	conf/direwolf.conf
+	conf/ax25ipd-udp0.conf
+	conf/ax25ipd-udp1.conf
 )
 
 AX25CONF=(
@@ -29,6 +32,7 @@ SCRIPTS=(
 	scripts/wait-for-tty.sh
 	scripts/mheardd-start.sh
 	scripts/ptyproxy-start.sh
+	scripts/ax25ipd-start.sh
 )
 
 PORTS=(
@@ -69,4 +73,5 @@ systemctl daemon-reload
 systemd-tmpfiles --create
 systemctl enable radio.target tncaudio.service direwolf.service rigctld.service \
 	ax25tnc@vhf0.service ax25ports.target mheardd.service \
-	ptyproxy@udp0.service ptyproxy@udp1.service
+	ptyproxy@udp0.service ptyproxy@udp1.service \
+	ax25ipd@udp0.service ax25ipd@udp1.service
