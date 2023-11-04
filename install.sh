@@ -5,11 +5,17 @@ UNITS=(
 	units/tncaudio.service
 	units/direwolf.service
 	units/rigctld.service
-	units/ax25tnc@.service
+	units/kissattach@.service
 	units/mheardd.service
 	units/ax25ports.target
 	units/ptyproxy@.service
 	units/ax25ipd@.service
+)
+
+OVERRIDES=(
+	kissattach@vhf0.service:units/wants-direwolf.conf
+	kissattach@udp0.service:units/wants-ax25ipd-udp0.conf
+	kissattach@udp1.service:units/wants-ax25ipd-udp1.conf
 )
 
 CONF=(
@@ -27,8 +33,8 @@ SCRIPTS=(
 	scripts/tncaudio.sh
 	scripts/direwolf-start.sh
 	scripts/direwolf-cleanup.sh
-	scripts/ax25tnc-start.sh
-	scripts/ax25tnc-startpost.sh
+	scripts/kissattach-start.sh
+	scripts/kissattach-startpost.sh
 	scripts/wait-for-tty.sh
 	scripts/mheardd-start.sh
 	scripts/ptyproxy-start.sh
@@ -47,6 +53,14 @@ mkdir -p /opt/radio /etc/radio /etc/radio/ports
 
 for unit in "${UNITS[@]}"; do
 	install -m 644 "$unit" /etc/systemd/system
+done
+
+for spec in "${OVERRIDES[@]}"; do
+	unit=${spec%:*}
+	override=${spec#*:}
+
+	mkdir -p "/etc/systemd/system/${unit}.d"
+	install -m 644 "$override" "/etc/systemd/system/${unit}.d/"
 done
 
 for conf in "${CONF[@]}"; do
@@ -72,6 +86,7 @@ done
 systemctl daemon-reload
 systemd-tmpfiles --create
 systemctl enable radio.target tncaudio.service direwolf.service rigctld.service \
-	ax25tnc@vhf0.service ax25ports.target mheardd.service \
+	kissattach@vhf0.service kissattach@udp0.service kissattach@udp1.service \
+	ax25ports.target mheardd.service \
 	ptyproxy@udp0.service ptyproxy@udp1.service \
 	ax25ipd@udp0.service ax25ipd@udp1.service

@@ -1,0 +1,17 @@
+[Unit]
+Description=Attach ax.25 port %i
+Wants=ax25ports.target
+Before=ax25ports.target
+ConditionPathExists=/etc/ax25/axports
+
+[Service]
+Type=forking
+EnvironmentFile=/etc/radio/radio.env
+EnvironmentFile=-/etc/radio/kissattach.env
+EnvironmentFile=-/etc/radio/ports/%i.env
+ExecStartPre=/opt/radio/wait-for-tty.sh ${AX25_TTY}
+ExecStart=/opt/radio/kissattach-start.sh %i ${AX25_TTY}
+ExecStartPost=/opt/radio/kissattach-startpost.sh %i
+
+[Install]
+WantedBy=radio.target

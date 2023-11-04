@@ -1,2 +1,4 @@
 #portname  callsign  speed  paclen  window  description
 vhf0       N1LKS-0   57600  128     4       Primary RF link
+udp0       N1LKS-1   57600  255     4       axudp0
+udp1       N1LKS-15  57600  255     4       axudp1
