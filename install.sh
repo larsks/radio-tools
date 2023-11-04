@@ -23,6 +23,7 @@ SCRIPTS=(
 	scripts/direwolf-cleanup.sh
 	scripts/ax25tnc-start.sh
 	scripts/ax25tnc-startpost.sh
+	scripts/wait-for-tty.sh
 )
 
 PORTS=(
