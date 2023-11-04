@@ -8,6 +8,7 @@ UNITS=(
 	units/ax25tnc@.service
 	units/mheardd.service
 	units/ax25ports.target
+	units/ptyproxy@.service
 )
 
 CONF=(
@@ -27,6 +28,7 @@ SCRIPTS=(
 	scripts/ax25tnc-startpost.sh
 	scripts/wait-for-tty.sh
 	scripts/mheardd-start.sh
+	scripts/ptyproxy-start.sh
 )
 
 PORTS=(
@@ -66,4 +68,5 @@ done
 systemctl daemon-reload
 systemd-tmpfiles --create
 systemctl enable radio.target tncaudio.service direwolf.service rigctld.service \
-	ax25tnc@vhf0.service ax25ports.target mheardd.service
+	ax25tnc@vhf0.service ax25ports.target mheardd.service \
+	ptyproxy@udp0.service ptyproxy@udp1.service

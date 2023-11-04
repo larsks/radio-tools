@@ -1,0 +1,9 @@
+[Unit]
+Description=PTY proxy for AXUDP port %i
+
+[Service]
+Type=exec
+ExecStart=/opt/radio/ptyproxy-start.sh %i
+
+[Install]
+WantedBy=radio.target
